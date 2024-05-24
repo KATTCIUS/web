@@ -77,6 +77,8 @@ body {
     width: 60%;
     padding: 0px;
     padding-left:  40px;
+    padding-bottom: 20px;
+    
 }
 
 .content h2 {
@@ -84,14 +86,35 @@ body {
     margin-bottom: 30px;
 }
 
+.content h3 {
+    font-size: 30px;
+   /* color: #E29D14; */
+
+}
+
+.content h4 {
+    font-size: 20px;
+
+}
+
 .content p {
     font-size: 16px;
     line-height: 1.5;
+    
+}
+.content a{
+
+    color: #7A7A7A;
+}
+
+.content a:hover{
+
+    color: inherit; 
 }
 
 .content li a {
     text-decoration: none;
-    color: #333;
+    color: #7A7A7A;
     font-weight: bold;
 }
 
@@ -106,6 +129,14 @@ body {
 
 #contenedor-imagen {
     background-color: #ABE3FE;
+  }
+
+
+
+  footer{
+    padding: 20px;
+    text-align: center;
+    color: #7A7A7A;
   }
 
 
@@ -165,6 +196,7 @@ body {
     display: flex; /* Para colocar los botones uno al lado del otro */
     justify-content: center; /* Para centrar los botones horizontalmente */
     align-items: center; /* Para centrar los botones verticalmente */
+    padding-top: 30px;
    
 }
 
