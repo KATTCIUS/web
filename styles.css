@@ -1,0 +1,269 @@
+
+body {
+    font-family: 'Quicksand', Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.josefin-sans {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+
+.quicksand {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: normal;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 10%;
+    /* background-color: #e0e0e0;*/
+    padding: 30px;
+    padding-left: 40px;
+    /*box-shadow: 2px 0 5px rgba(0,0,0,0.1); */
+}
+
+.sidebar h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    
+}
+
+.sidebar ul li a:hover {
+    color: #F0C500
+    
+  }
+
+.icons a{
+  
+    color: #9B9B9B; 
+    display: inline-block;
+    margin-right: 10px; /* Ajusta este valor según desees */
+    
+    
+}
+
+
+.content {
+    width: 60%;
+    padding: 0px;
+    padding-left:  40px;
+}
+
+.content h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.content p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.content li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+
+
+.content img {
+    display: block;
+    margin: 0 auto; 
+    width:  60%;
+}
+
+
+#contenedor-imagen {
+    background-color: #ABE3FE;
+  }
+
+
+.app-button {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 15px 10px 0px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #000;
+    max-width: 180px; /* Ajusta este valor según sea necesario */
+    width: 100%;
+    box-sizing: border-box; /* Para incluir el padding en el ancho total */
+    margin: 0 10px; /* Espacio entre los botones */
+}
+
+.google-play-icon {
+ 
+
+    margin-right: 10px;
+    padding-left: 5px;
+    max-width: 30px; /* Ajusta este valor según sea necesario */
+   
+}
+
+.app-store-icon {
+ 
+
+    
+    margin-right: 10px;
+    max-width: 30px;/* Ajusta este valor según sea necesario */
+    
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.available {
+    font-size: 14px;
+    color: #666;
+}
+
+.font-button{
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    
+}
+
+.buttons-container {
+    display: flex; /* Para colocar los botones uno al lado del otro */
+    justify-content: center; /* Para centrar los botones horizontalmente */
+    align-items: center; /* Para centrar los botones verticalmente */
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+.gg-facebook {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 20px;
+    height: 20px
+}
+
+.gg-facebook:hover {
+    color: #4265B0
+  }
+
+
+
+
+
+.gg-facebook::after,
+.gg-facebook::before {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box
+}
+.gg-facebook::before {
+    width: 8px;
+    height: 20px;
+    border-left: 4px solid;
+    border-top: 4px solid;
+    border-top-left-radius: 5px;
+    left: 6px
+}
+.gg-facebook::after {
+    width: 10px;
+    height: 4px;
+    background: currentColor;
+    top: 7px;
+    left: 4px;
+    transform: skew(-5deg)
+}
+.gg-facebook {
+
+    color: #9B9B9B /* Color de Facebook */
+}
+
+.gg-instagram {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 2px;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    color: #9B9B9B
+   }
+   
+.gg-instagram:hover{
+    
+    color: #C0209B
+}
+
+   .gg-instagram::after,
+   .gg-instagram::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute
+   }
+   
+   .gg-instagram::after {
+    border: 2px solid;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    top: 3px
+   }
+   
+   .gg-instagram::before {
+    border-radius: 3px;
+    width: 2px;
+    height: 2px;
+    background: currentColor;
+    right: 1px;
+    top: 1px
+   } 
+
