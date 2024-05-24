@@ -134,8 +134,9 @@ body {
 
 
   footer{
-    padding: 20px;
-    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    text-align: left;
     color: #7A7A7A;
   }
 
@@ -202,7 +203,11 @@ body {
 
 
 
-
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
 
 
 
