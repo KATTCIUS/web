@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Quicksand', Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: white;
     margin: 0;
     padding: 0;
     
@@ -80,6 +80,7 @@ body {
     padding: 0px;
     padding-left:  40px;
     padding-bottom: 20px;
+
 
 }
 
@@ -278,11 +279,19 @@ body {
         padding-top: 10px;
        
     }
- 
+
+    .topnav {
+        display: block;
+    }
+    
     
   
 }
-
+@media (min-width: 769px) {
+    .topnav {
+        display: none;
+    }
+}
 
 
 /* Style the navigation menu */
