@@ -55,7 +55,7 @@ body {
 
 .sidebar ul li a {
     text-decoration: none;
-    color: #333;
+    color: #7A7A7A;
     font-weight: bold;
     
 }
@@ -321,6 +321,7 @@ body {
   
 }
 
+
 .topnav p{
    
 
@@ -328,7 +329,7 @@ body {
   padding: 10px 0px 0px 30px;
   margin: 0;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 15px;
   display: block;
 
 
@@ -337,6 +338,7 @@ body {
     color: #7A7A7A;
     font-weight: bold;
 }
+
 
 
 .topnav h1{
