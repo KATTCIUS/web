@@ -4,6 +4,7 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    
 }
 
 
@@ -26,6 +27,7 @@ body {
 
 .container {
     display: flex;
+    flex-direction: row;
 }
 
 .sidebar {
@@ -78,11 +80,28 @@ body {
     padding: 0px;
     padding-left:  40px;
     padding-bottom: 20px;
-    
+
+}
+
+.contenedor-flex {
+    display: flex;
+    align-items: flex-start; /* Alinea el contenido al inicio del contenedor */
+}
+
+#contenedor-retrato {
+    flex: 0 0 auto; /* La imagen no se redimensiona automáticamente */
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+   
+}
+
+#contenedor-retrato img {
+    width: 350px; /* Ancho de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+    object-fit: cover; /* Ajusta cómo se muestra la imagen si sus proporciones no coinciden con las del contenedor */
 }
 
 .content h2 {
-    font-size: 50px;
+    font-size: 40px;
     margin-bottom: 30px;
 }
 
@@ -133,10 +152,11 @@ body {
 
 
 
+
   footer{
     padding: 50px;
     font-size: 15px;
-    text-align: left;
+    text-align: center;
     color: #7A7A7A;
   }
 
@@ -211,7 +231,129 @@ body {
 
 
 
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar{
+        display: none;
+    }
+    
+    
+    .icons{
+    display: none;
+    }
+    .content  {
+        width: 100%;
+      
+        padding: 0px;
+    }
+    .content p{
+        margin: 20px;
+    }
+    
+    .content img {
+        display: block;
+        margin: 0 auto; 
+        width:  90%;
+    }
+    .content h2{
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        margin-left: 25px;
+       
+        
+    }
+    .content li {
+        margin: 20px;
+    }
+   
+    .buttons-container {
+        display: flex; /* Para colocar los botones uno al lado del otro */
+        flex-direction: column;
+        justify-content: center; /* Para centrar los botones horizontalmente */
+        align-items: center; /* Para centrar los botones verticalmente */
+        gap: 20px;
+        padding-top: 10px;
+       
+    }
+ 
+    
+  
+}
 
+
+
+/* Style the navigation menu */
+.topnav {
+ 
+  overflow: hidden;
+  background-color: white;
+  position: relative;
+
+  
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: rgb(0, 0, 0);
+
+  /*arriba, derecha, abajo, izquierda */
+  padding: 30px 20px 20px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  
+}
+
+.topnav p{
+   
+
+  /*arriba, derecha, abajo, izquierda */
+  padding: 10px 0px 0px 30px;
+  margin: 0;
+  text-decoration: none;
+  font-size: 13px;
+  display: block;
+
+
+
+
+    color: #7A7A7A;
+    font-weight: bold;
+}
+
+
+.topnav h1{
+    font-size: 15px;
+    color: #000;
+    margin: 0px;
+    padding-left: 10px;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: white;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: white;
+  color: white;
+  height: 20px;
+}
 
 
 
