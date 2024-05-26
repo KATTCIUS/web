@@ -67,12 +67,15 @@ body {
 
 .icons a{
   
-    color: #9B9B9B; 
+    color: #7A7A7A;
     display: inline-block;
     margin-right: 10px; /* Ajusta este valor según desees */
     font-size: 25px;
     
     
+}
+.icons i{
+    margin-right: 5px;
 }
 
 
@@ -163,10 +166,11 @@ body {
 
 
   footer{
-    padding: 50px;
-    font-size: 15px;
+    padding: 30px;
+ 
     text-align: center;
-    color: #7A7A7A;
+
+   
   }
 
 
@@ -309,8 +313,9 @@ body {
         width: 300px; /* Ancho de la imagen */
   
     }
-    
-  
+
+
+   
 }
 @media (min-width: 769px) {
     .topnav {
