@@ -32,12 +32,19 @@
             text-decoration: underline;
         }
 
-        p {
+        p.cartucho {
             margin: 5px 0 0 0;
             font-size: 16px;
             color: #111;
             font-weight: 400;
         }
+
+          p {
+           line-height: 1.6; /* Antes seguro estaba en 1.2 o default */
+            margin-bottom: 20px; /* Separación entre párrafos */
+            font-size: 1.1rem;   /* Un pelín más grande si es necesario */
+        }
+        
         
         /* ################# LAYOUT PRINCIPAL ################# */
         
@@ -216,17 +223,39 @@
         /* ################# SECCIONES DE CONTENIDO ################# */
         
         /* Títulos principales de sección (Antes: new-section-h2) */
-        .section-title {
-            margin: 20px auto 20px auto; 
-            font-size: 24px;
-            color: var(--main-text);
-            font-weight: 700;
-            line-height: 1.2;
-            text-align: left; 
-            padding: 0 10px; 
-            text-transform: uppercase;
-           
-        }
+.section-title {
+    /* --- Tipografía estilo Memphis --- */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 4rem;      /* Tamaño gigante */
+    font-weight: 500;     
+    letter-spacing: -2px; /* Letras juntas */
+    line-height: 1;
+    color: #000;
+    text-transform: none; /* Permite minúsculas */
+    
+    /* --- Alineación y Posición --- */
+    text-align: left;     /* Alineado a la izquierda */
+    
+    /* Esto es clave para que se alinee con el resto de tu texto: */
+    width: 90%;           
+    max-width: 800px;
+    
+    /* Margen: 70px arriba, 'auto' a los lados (para centrar el bloque), 30px abajo */
+    margin: 70px auto 30px auto; 
+
+    /* Reseteamos estilos de caja anteriores */
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+    .section-title {
+        font-size: 2.5rem; /* Un poco más chico en celular para que quepa */
+    }
+}
         
         /* Subtítulos (Antes: link-subtitle) */
         .subtitle {
@@ -257,6 +286,35 @@
             color: inherit; /* Esto hace que el enlace herede el color de su elemento padre (el párrafo, que es negro) */
             font-weight: bold;
         }
+
+
+
+        .project-title{
+            font-family: 'DM Sans', sans-serif;
+            font-size: 3rem;       /* 32px aprox, grande pero menor al título principal */
+            font-weight: 500;     
+    letter-spacing: -2px; /* Letras juntas */
+    line-height: 1;
+            margin-bottom: 15px;   /* Espacio antes del texto */
+            margin-top: 0;
+            text-align: left;
+            color: #000;
+        }
+
+
+        /* Estilos específicos para las listas dentro de las descripciones */
+.text-block ul {
+    margin-top: 20px;      /* Separa la lista del párrafo de arriba */
+    margin-bottom: 20px;   /* Separa la lista de lo que siga abajo */
+    padding-left: 20px;    /* Asegura que los puntitos (bullets) no se salgan del margen */
+}
+
+.text-block li {
+    line-height: 1.6;      /* Igual que tus párrafos: más aire para leer */
+    margin-bottom: 15px;   /* Espacio entre cada ítem de la lista */
+    font-size: 1.1rem;     /* El tamaño aumentado que pediste */
+    color: var(--main-text);
+}
         
         .links-list {
             padding: 0 0 0 0px; 
@@ -295,6 +353,24 @@
             border-top: 2px dashed var(--border-color); 
             border-bottom: none;
         }
+
+        .divider2 {
+    width: 100%;      
+    max-width: 100%;
+    margin: 4rem auto; /* Mantiene el espaciado amplio que definimos antes */
+    border: none;      /* Quitamos la línea punteada anterior */
+    height: 12px;      /* Altura total de la onda */
+    
+    /* Dibujamos el Zig-Zag usando un SVG en línea */
+    /* stroke-width='1.5' controla el grosor de la línea (cámbialo si lo quieres más fino o grueso) */
+    /* stroke='%23000000' es el color negro (#000000) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'%3E%3Cpath d='M0 10 L10 0 L20 10' fill='none' stroke='%23000000' stroke-width='1.5'/%3E%3C/svg%3E");
+    
+    background-repeat: repeat-x; /* Repetir horizontalmente */
+    background-position: center;
+    background-size: 20px 100%;  /* El "20px" controla qué tan anchos son los picos del zig-zag */
+    opacity: 0.8; /* Un poco de opacidad para que no sea tan agresivo */
+}
 
         .footer-email {
             font-size: 18px;
@@ -403,12 +479,34 @@
             text-decoration: underline; 
         }
 
-        .highlight-text {
-            font-weight: 700; 
-            font-size: 1.3rem; 
-            font-style: italic;
-            color: var(--main-text); 
-        }
+      .highlight-text {
+    /* Tipografía igual al título principal */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 3rem;       /* 48px aprox. Excelente tamaño para jerarquía */
+    font-weight: 500;      /* Medium, para que se vea elegante, no tosco */
+    
+    /* Ajuste visual */
+    letter-spacing: -1.5px; /* Un pelín menos apretado para que se lea mejor el nombre */
+    line-height: 1.1;       /* Un poco más de aire vertical para que no se corten los ascendentes */
+    
+    /* Espaciado */
+    margin-bottom: 20px;    /* Separa el título del texto descriptivo */
+    margin-top: 40px;       /* Le da aire respecto a lo anterior */
+    
+    /* Alineación y Color */
+    text-align: left;
+    color: var(--main-text); /* Solo necesitas definirlo una vez */
+    display: block;          /* Asegura que ocupe su propia línea */
+}
+/* --- Ajuste para móviles (responsive) --- */
+@media (max-width: 600px) {
+    .highlight-text {
+        font-size: 2.2rem;    /* Bajamos de 3rem a 2.2rem */
+        letter-spacing: -1px; /* Ajustamos el espaciado para que se lea bien en pequeño */
+        margin-top: 30px;     /* Un poco menos de aire arriba */
+        margin-bottom: 15px;
+    }
+}
 
         /* ################# GALERÍA ################# */
         .gallery {
