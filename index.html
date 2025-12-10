@@ -3,101 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Bustos Artista Digital</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,500;1,500&family=Quicksand:wght@500&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/24890e9e6b.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="https://i.imgur.com/J7dVpN5.png" type="image/PNG">
-
+    <title>Pintordenubes – Indie Game Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h1>Juan Bustos <br> Artista Digital</span></h1>
+
+    <header class="header-box">
+        <div class="header-title">
+            <h1>Pintordenubes — Indie Game Development</h1>
+        </div>
+        
+        <nav class="nav-bar">
             <ul>
-                <li><a href="index.html">Capy Notes</a></li>
-                <li><a href="catCafe.html">Cat Cafe</a></li>
-                <li><a href="about.html">Sobre mí</a></li>
-
-
-                
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects-and-experience.html">Projects and Experience</a></li>
             </ul>
-
-            
-            <div class="icons">
-          
-               
-                 <a href="https://www.facebook.com/juanbustos.art" target="_blank">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                 <a href="https://www.instagram.com/pintordenubes/?hl=es" target="_blank">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            
-           </div>
-           
-
-        </div>
-
-         <!-- Top Navigation Menu -->
-        
-         <div class="topnav">
-            <a  class="active"> <h1>Juan Bustos <br> Artista Digital</span></h1></a>
-            <!-- Navigation links (hidden by default) -->
-            <div id="myLinks">
-                <a href="index.html">Capy Notes</a>
-                <a href="about.html">Sobre mí</a>
-              
-            </div>
-            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-              <i class="fa fa-bars"></i>
-            </a>
-          </div>
+        </nav>
+    </header>
     
-          
+    <div class="cartridges-layout">
+        <a href="capy-notes.html" class="cartridge">
+            <div class="cart-lines"></div>
 
-         
-        <div class="content">
-            <h2>Capy Notes</h2>
-            <div id="contenedor-imagen">
-                <img src="https://i.imgur.com/3svY3tJ.jpg" alt="Capy en un campo con flores" style="max-width: 100%; height: auto;">
-              </div>
-            <p>Capy Notes es una aplicación de notas y registro diario de emociones que además puede ayudar a evitar la procrastinación mediante temporizadores y música. Junto a Capy, un simpatico carpincho los usuarios pueden ganar monedas diariamente y desbloquear estilos de notas, muebles, plantas y colores para decorar su espacio. La aplicación está disponible en Google Play y App Store de manera gratuita.</p>
-            <li><a href="politica-de-privacidad.html">Politica de privacidad</a></li>
-            <li><a href="eliminacion-de-datos.html">Eliminación de los datos</a></li>
-          
-            <div class="buttons-container">
-
-            <a href="https://play.google.com/store/apps/details?id=com.Pintordenubes.CapyNotes&hl=es_AR&gl=US" class="app-button" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_Play_2022_icon.svg/800px-Google_Play_2022_icon.svg.png" alt="Google Play Icon" class="google-play-icon">
-                <div class="text-container">
-                    <span class="available">Disponible en</span>
-                    <span class="font-button">Google Play</span>
+            <div class="cart-content">
+                <div class="cart-image-box">
+                    <img src="https://i.imgur.com/3svY3tJ.jpg" alt="Capy Notes" class="img-cover">
                 </div>
-            </a>
 
-
-            
-            <a href="https://apps.apple.com/es/app/capy-notes/id6499458445" class="app-button" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Google Play Icon" class="app-store-icon">
-                <div class="text-container">
-                    <span class="available">Descárgalo en </span>
-                    <span class="font-button">App Store</span>
+                <div class="cart-text-box">
+                    <h1>Capy Notes</h1>
+                    <p>Capy is by your side to help you organize your tasks and relax.</p>
                 </div>
-            </a>
+            </div>
 
-        </div>
-        </div>
-     
+            <div class="cart-connector"></div>
+        </a>
 
+        <a href="michi-cafe.html" class="cartridge michiCafe">
+            <div class="cart-lines"></div>
+
+            <div class="cart-content">
+                <div class="cart-image-box">
+                    <img src="https://i.imgur.com/Xpx8Let.jpeg" alt="Nueva Imagen" class="img-cover">
+                </div>
+
+                <div class="cart-text-box">
+                    <h1>Michi Café: Cat Café</h1>
+                    <p>Run the coziest café in the city as a cute cat barista.</p>
+                </div>
+            </div>
+
+            <div class="cart-connector"></div>
+        </a>
+    </div>
+    
+   
+ 
+    <footer class="footer">
+        <div class="divider"></div>
         
+        <a href="mailto:contact@pintordenubes.com.ar" class="footer-email">
+            contact@pintordenubes.com.ar
+        </a>
+    </footer>   
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="imgExpanded">
     </div>
 
-    <footer></footer>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintordenubes – Indie Game Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES GLOBALES --- */
+        :root {
+            --bg-color: #F5F2F0; 
+            --main-text: #191919; 
+            --border-color: #000; 
+            --nav-bg: #e4cba6; 
+            --hover-color: #555; 
+        }
+
+        /* --- Configuración General del BODY --- */
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--main-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            overflow-x: hidden; 
+        }
+
+        /* Estilos globales para links */
+        a {
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+        
+        a:not(.cartridge):not(.app-button):hover {
+            color: var(--hover-color);
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        p {
+            margin: 5px 0 0 0;
+            font-size: 16px;
+            color: #111;
+            font-weight: 400;
+        }
+        
+        /* ################# LAYOUT PRINCIPAL ################# */
+        
+        /* Clase de utilidad para centrar y limitar ancho (Antes: new-section-base) */
+        .container {
+            width: 90%; 
+            max-width: 800px; 
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor de los cartuchos (Antes: cartridge-container-wrapper) */
+        .cartridges-layout {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center; 
+            min-height: calc(100vh - 150px);
+            padding-bottom: 50px;
+            gap: 50px; 
+            width: 100%; 
+        }
+        
+        /* ################# HEADER ################# */
+
+        .header-box {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto; 
+            box-shadow: -3px 3px 0 var(--border-color); 
+            border: 3px solid var(--border-color);
+        }
+
+        .header-title {
+            background-color: var(--title-bg);
+            padding: 15px 20px;
+            border-bottom: 3px solid var(--border-color);
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav-bar {
+            background-color: var(--nav-bg);
+            padding: 15px 20px;
+        }
+
+        .nav-bar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+            flex-wrap: nowrap; 
+            justify-content: flex-start; 
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            color: var(--main-text);
+            font-size: 18px;
+            font-weight: 500;
+            white-space: nowrap; 
+        }
+        
+        /* ################# CARTRIDGE (COMPONENT) ################# */
+
+        .cartridge {
+            width: 95%; 
+            max-width: 600px; 
+            background-color: #FCE166; 
+            border: 3px solid #000;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 25px;
+            box-shadow: -3px 3px 0 #000;
+            z-index: 2; 
+            box-sizing: border-box;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cartridge:hover {
+            transform: translateY(-5px);
+            box-shadow: -5px 6px 0 #000;
+        }
+
+        .michiCafe {
+            background-color: #FF83AF; 
+        }
+        
+        .michiCafe .cart-connector {
+            background-color: #CD5A83; 
+        }
+        
+        .cart-lines {
+            width: 100%;
+            height: 35px;
+            border-bottom: 2px solid #000;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .cart-lines::before,
+        .cart-lines::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+        }
+        .cart-lines::before { top: 14px; }
+        .cart-lines::after { top: 24px; }
+
+        .cart-content {
+            background-color: #fff;
+            width: 90%;
+            border: 3px solid #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .cart-image-box {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            border-bottom: 3px solid #000;
+            overflow: hidden;
+            transition: height 0.3s ease; 
+        }
+
+        /* Clase general para imagenes que ocupan todo el espacio (Antes: real-image) */
+        .img-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cart-text-box {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .cart-text-box h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #000;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .cart-connector {
+            position: absolute;
+            bottom: -30px;
+            width: 80%;
+            height: 25px;
+            background-color: #F2C04D; 
+            border: 3px solid #000;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            box-shadow: -3px 3px 0 #000;
+            z-index: -1; 
+        }
+
+        /* ################# SECCIONES DE CONTENIDO ################# */
+        
+        /* Títulos principales de sección (Antes: new-section-h2) */
+        .section-title {
+            margin: 50px auto 10px auto; 
+            font-size: 24px;
+            color: var(--main-text);
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: left; 
+            padding: 0 10px; 
+            text-decoration: underline;
+        }
+        
+        /* Subtítulos (Antes: link-subtitle) */
+        .subtitle {
+            margin: 30px auto 10px auto; 
+            font-size: 20px;
+            color: var(--main-text);
+            font-weight: 700;
+            text-align: left;
+            padding: 0 10px; 
+        }
+
+        /* Contenedor de imagen grande (Antes: new-section-image-area) */
+        .hero-image {
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--border-color); 
+            box-shadow: -3px 3px 0 var(--border-color); 
+        }
+        
+        /* Bloque de texto estándar (Antes: new-section-text-area) */
+        .text-block {
+             margin: 15px auto 0 auto;
+             padding: 0 10px;
+             text-align: left;
+        }
+        
+        .links-list {
+            padding: 0 0 0 30px; 
+            margin: 0 auto 0 auto;
+            list-style-type: disc; 
+        }
+        
+        .links-list li {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: var(--main-text);
+        }
+
+        .links-list a {
+            color: var(--main-text);
+            font-size: 16px;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        /* ################# FOOTER Y BOTONES ################# */
+
+        .footer {
+            width: 100%;
+            margin-top: 50px; 
+            padding-bottom: 15px;
+            background-color: var(--title-bg);
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .divider {
+            width: 90%; 
+            max-width: 800px; 
+            margin: 0 auto 13px auto; 
+            border-top: 2px dashed var(--border-color); 
+            border-bottom: none;
+        }
+
+        .footer-email {
+            font-size: 18px;
+            font-weight: 500;
+            text-decoration: none; 
+            color: var(--main-text);
+            display: block;
+        }
+
+        .buttons-group {
+            display: flex; 
+            flex-direction: row; 
+            justify-content: center; 
+            align-items: center; 
+            margin-top: 20px;
+            gap: 20px; 
+            padding: 0 10px;
+            flex-wrap: nowrap; 
+        }
+
+        .app-button:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .app-button {
+            display: flex;
+            align-items: center;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            padding: 10px 15px;
+            background-color: #fff;
+            text-decoration: none;
+            color: #000;
+            width: auto; 
+            min-width: 140px; 
+            max-width: 200px; 
+            box-sizing: border-box; 
+            margin: 0;
+            flex: 1; 
+            justify-content: center; 
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .font-button {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            white-space: nowrap; 
+        }
+
+        .available {
+            font-size: 14px;
+            color: #666;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .store-icon {
+            margin-right: 10px;
+            max-width: 30px; 
+            height: auto;
+            flex-shrink: 0; 
+        }
+
+        /* ################# SECCIÓN "SOBRE MÍ" ################# */
+
+        /* Layout específico para About Me (Antes: about-me-layout) */
+        .about-section {
+            display: flex;
+            gap: 20px; 
+            align-items: flex-start; 
+            padding: 0 10px; 
+            box-sizing: border-box;
+        }
+
+        .about-section .hero-image {
+            width: 35%; 
+            max-width: 250px; 
+            flex-shrink: 0; 
+            margin: 0; 
+        }
+
+        .about-section .text-block {
+            width: 65%; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        .about-section .img-cover {
+            width: 100%;
+            height: auto; 
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-section .text-block a {
+            color: var(--main-text); 
+            text-decoration: underline; 
+        }
+
+        .highlight-text {
+            font-weight: 700; 
+            font-size: 1.3rem; 
+            font-style: italic;
+            color: var(--main-text); 
+        }
+
+        /* ################# GALERÍA ################# */
+        .gallery {
+            padding: 20px 10px 0 10px;
+            column-count: 2; 
+            column-gap: 20px; 
+            max-width: 900px; 
+            width: 100%; 
+            box-sizing: border-box;
+        }
+
+        .card {
+            break-inside: avoid; 
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+            border: 3px solid #000; 
+            background-color: #fff; 
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.3s ease;
+            cursor: zoom-in; 
+            border: none; 
+        }
+
+        .card img:hover {
+            opacity: 0.85;
+        }
+
+        .card-info {
+            border-top: 3px solid #000; 
+            background-color: #f4f4f4; 
+            padding: 15px; 
+            font-size: 1rem;
+            font-weight: 700;
+            color: #000;
+            line-height: 1.3;
+            text-align: left;
+        }
+
+        .card-info span {
+            display: block;
+            margin-top: 8px; 
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* ################# MODAL ################# */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            backdrop-filter: blur(5px); 
+            
+            /* Centrado Flex */
+            justify-content: center;
+            align-items: center;
+            padding-top: 0; 
+        }
+
+        .modal-content {
+            display: block;
+            max-width: 95%;
+            max-height: 90vh; 
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation-name: zoom;
+            animation-duration: 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0.8); opacity: 0;} 
+            to {transform:scale(1); opacity: 1;}
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: sans-serif;
+            z-index: 1001; 
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #f1c241; 
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           MEDIA QUERIES
+           ========================================================= */
+
+        @media (max-width: 768px) {
+            .cart-image-box { height: 180px; }
+            .nav-bar ul { gap: 15px; }
+            .nav-bar a { font-size: 16px; }
+        }
+
+        @media (max-width: 600px) {
+            .header-box { margin: 20px auto; }
+            .nav-bar { padding: 10px 15px; }
+            .nav-bar ul { gap: 10px; justify-content: flex-start; width: 100%; }
+            .nav-bar a { font-size: 13px; }
+            .header-title h1 { font-size: 18px; }
+            .cart-image-box { height: 140px; }
+            .cart-text-box h1 { font-size: 20px; }
+            .cart-text-box { padding: 10px 10px; }
+            .cart-text-box p { font-size: 13px; margin-top: 5px; }
+            .cartridge { padding-bottom: 20px; }
+            .buttons-group { gap: 8px; }
+            .app-button { padding: 8px 5px; min-width: 0; }
+            .store-icon { max-width: 22px; margin-right: 5px; }
+            .font-button { font-size: 14px; }
+            .available { font-size: 10px; }
+            .about-section { flex-direction: column; gap: 15px; }
+            .about-section .hero-image { width: 70%; max-width: 250px; margin: 0 auto; }
+            .about-section .text-block { width: 100%; }
+            .gallery { column-count: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-box">
+        <div class="header-title">
+            <h1>Pintordenubes — Indie Game Development</h1>
+        </div>
+        
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Projects and Experience</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="cartridges-layout">
+        <a href="pagina-capy-notes.html" class="cartridge">
+            <div class="cart-lines"></div>
+
+            <div class="cart-content">
+                <div class="cart-image-box">
+                    <img src="https://i.imgur.com/3svY3tJ.jpg" alt="Capy Notes" class="img-cover">
+                </div>
+
+                <div class="cart-text-box">
+                    <h1>Capy Notes</h1>
+                    <p>Capy is by your side to help you organize your tasks and relax.</p>
+                </div>
+            </div>
+
+            <div class="cart-connector"></div>
+        </a>
+
+        <a href="pagina-michi-cafe.html" class="cartridge michiCafe">
+            <div class="cart-lines"></div>
+
+            <div class="cart-content">
+                <div class="cart-image-box">
+                    <img src="https://i.imgur.com/Xpx8Let.jpeg" alt="Nueva Imagen" class="img-cover">
+                </div>
+
+                <div class="cart-text-box">
+                    <h1>Michi Café: Cat Café</h1>
+                    <p>Run the coziest café in the city as a cute cat barista.</p>
+                </div>
+            </div>
+
+            <div class="cart-connector"></div>
+        </a>
+    </div>
+    
+    <h2 class="section-title container">Capy Notes</h2>
+    
+    <div class="hero-image container">
+        <img src="https://i.imgur.com/3svY3tJ.jpg" alt="Nueva Sección de Aventura" class="img-cover">
+    </div>
+    
+    <div class="text-block container">
+        <p>Capy Notes es una aplicación de notas y registro diario de emociones que además puede ayudar a evitar la procrastinación mediante temporizadores y música. Junto a Capy, un simpatico carpincho los usuarios pueden ganar monedas diariamente y desbloquear estilos de notas, muebles, plantas y colores para decorar su espacio. La aplicación está disponible en Google Play y App Store de manera gratuita.</p>
+    </div>
+    
+    <h3 class="subtitle container">Recopilación y Uso de Información</h3>
+    
+    <ul class="links-list container">
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Eliminación de los datos</a></li>
+    </ul>
+
+
+    <div class="buttons-group">
+
+        <a href="https://play.google.com/store/apps/details?id=com.Pintordenubes.CapyNotes&hl=es_AR&gl=US" class="app-button" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_Play_2022_icon.svg/800px-Google_Play_2022_icon.svg.png" alt="Google Play Icon" class="store-icon">
+            <div class="btn-text-group">
+                <span class="available">GET IT IN</span>
+                <span class="font-button">Google Play</span>
+            </div>
+        </a>
+
+        <a href="https://apps.apple.com/es/app/capy-notes/id6499458445" class="app-button" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Google Play Icon" class="store-icon">
+            <div class="btn-text-group">
+                <span class="available">Download on the </span>
+                <span class="font-button">App Store</span>
+            </div>
+        </a>
+
+    </div>
+
+
+    <h2 class="section-title container">About</h2>
+
+    <div class="about-section container"> 
+        <div class="hero-image">
+            <img src="https://i.imgur.com/kl7sqmf.jpeg" alt="Pintordenubes" class="img-cover">
+        </div>
+
+        <div class="text-block">
+            <p>Hello, I’m Juan Bustos, a digital artist and programmer from Córdoba, Argentina.</p>
+            <p>In recent years, I’ve focused on something I truly love: video game design and development. In 2024, I released <strong>Capy Notes</strong>, and in 2025, I published <strong>Michi Café</strong>.</p>
+            <p>I’m fascinated by stories, whether in video games, films, or animation. Through game development, I try to bring the worlds I imagine to life so that others can explore them :)</p>
+            <p>If you’d like to send me a message, you can write to <a href="mailto:pintordenubes.art@gmail.com"><strong>pintordenubes.art@gmail.com</strong></a></p>
+        </div>
+    </div>
+
+
+    <h2 class="section-title container">Proyects and Experience</h2>
+
+    <div class="text-block container">
+        <p>
+           <span class="highlight-text">Capy Notes</span> es una aplicación que comencé a desarrollar en septiembre de 2023 y que lancé de manera gratuita para iOS y Android. Está pensada como una herramienta para organizar tareas (to-dos y notas) y potenciar la productividad, integrando técnicas como el método pomodoro y el registro de emociones, todo dentro de una interfaz simple, cálida y amigable.
+        </p>
+        <p>
+           Además de sus funciones de organización, la app incorpora una capa lúdica: el usuario puede regar y cosechar plantas para mejorar la casa y desbloquear emotes para Capy, el personaje protagonista.
+        </p>
+
+        <section class="gallery">
+            <article class="card">
+                <img src="https://i.imgur.com/VOzrtBT.png" alt="" class="gallery-img">
+                <div class="card-info">Diseño de personaje<span>Capy es un carpincho y es el protagonista de Capy Notes.</span></div>
+            </article>
+
+            <article class="card">
+                <img src="https://i.imgur.com/ze0r54d.png" alt="" class="gallery-img">
+                <div class="card-info">Diseño de items (Decoración)<span>El jugador puede comprar distintos objetos decorativos para personalizar y mejorar la casa de Capy.</span></div>
+            </article>
+
+            <article class="card">
+                <img src="https://i.imgur.com/6oJ2cxY.png" alt="" class="gallery-img">
+                <div class="card-info">Diseño de items (Plantas)<span>Las plantas son objetos que el jugador puede adquirir para decorar la casa de Capy. Además, pueden regarse para obtener monedas.</span></div>
+            </article>
+
+            <article class="card">
+                <img src="https://i.imgur.com/RCSPC4Q.gif" alt="" class="gallery-img">
+                <div class="card-info">Animaciones de Capy<span>Animaciones del personaje en diferentes situaciones.</span></div>
+            </article>
+        </section>
+
+        <p>Durante el desarrollo asumí todos los aspectos del proyecto: diseño visual, interfaz, experiencia de usuario, programación, animaciones y arquitectura de datos. Algunos de los puntos más destacados: </p>
+
+        <ul>
+            <li>Diseñé desde cero cada pantalla, la navegación y todo el flujo de usuario.</li>
+            <li>Programé toda la lógica interna, creando todos los sistemas de la app: desde el gestor de notas y el sistema de riego, hasta la integración de publicidad y el guardado en la nube.</li>
+            <li>Implementé animaciones que enriquecen la experiencia visual en las interacciones de la UI y animé al personaje para darle vida y personalidad dentro de la app.</li>
+            <li>Diseñé una arquitectura de datos robusta basada en listas y arrays para gestionar el inventario, el guardado de ítems, la información de notas y todos los datos del usuario almacenados en la nube.</li>                   
+        </ul>
+
+        <p>El resultado es una aplicación que combina productividad y juego dentro de una estética propia, y que ya acumula más de 50.000 descargas en Google Play.</p>
+    </div>
+
+ 
+    <footer class="footer">
+        <div class="divider"></div>
+        
+        <a href="mailto:contact@pintordenubes.com.ar" class="footer-email">
+            contact@pintordenubes.com.ar
+        </a>
+    </footer>   
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="imgExpanded">
+    </div>
+
+    <script>
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("imgExpanded");
+        var images = document.querySelectorAll('.gallery-img');
+
+        images.forEach(function(img) {
+            img.onclick = function(){
+                modal.style.display = "flex";
+                modalImg.src = this.src; 
+            }
+        });
+
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
