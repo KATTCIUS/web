@@ -249,6 +249,10 @@
     border: none;
     box-shadow: none;
 }
+.title-about{
+
+    margin-bottom: 70px;
+}
 
 /* Ajuste para móviles */
 @media (max-width: 600px) {
